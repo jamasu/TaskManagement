@@ -1,0 +1,18 @@
+﻿<h1>Task Manager 1.0</h1>
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <ul>
+            <li>
+               <span class="glyphicon glyphicon-list">@Html.ActionLink(@"Active tasks", "ListActiveTasks", "Home")</span>
+            </li>
+            <li>
+                 <a class="glyphicon glyphicon-plus" href="@Url.Action("CreateTask", "Home")">Register</a>
+
+</li>
+            <li>
+                <span class="glyphicon glyphicon-inbox">@Html.ActionLink("View completed tasks", "ListCompletedTasks", "Home")</span>
+</li>
+        </ul>
+    </div>
+</div>

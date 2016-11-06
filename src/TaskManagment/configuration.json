@@ -1,0 +1,5 @@
+﻿{
+  "TaskDB": {
+    "ConnectionString": "Data Source=localhost\\SQLEXPRESS;Initial Catalog=TaskManagerDb;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+  }
+}

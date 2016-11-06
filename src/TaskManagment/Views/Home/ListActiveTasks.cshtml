@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TaskManagerDbDAL.TaskHandler>
+
+<h3>All active tasks</h3>
+<ul>
+    @foreach (var task in Model)
+    {
+        <li>
+            @Html.ActionLink(task.TaskName, "Details", "Home", new { id = task.Id }, null)
+        </li>
+    }
+
+</ul>
