@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerDbDAL;
 using TaskManagment.Model;
@@ -26,7 +27,7 @@ namespace TaskManagment.Controllers
         public async Task<IActionResult> ListActiveTasks()
         {
             var tasks = await _db.Tasks.ToListAsync();
-            ViewData.Model = tasks;
+            ViewData.Model = tasks.OrderByDescending(t => t.Id);
             return View();
         }
 
@@ -36,33 +37,34 @@ namespace TaskManagment.Controllers
             return View();
         }
         [HttpPost]
-      
+
         public async Task<IActionResult> CreateTask(TaskModel model)
         {
 
             if (ModelState.IsValid)
             {
-                var job = new TaskHandler();
+                var job = new TaskHandler
                 {
-                  
-                    job.TaskMessage = model.TaskMessage;
-                    job.TaskName = model.TaskName;
-                    job.CompleteDate = DateTime.Now; //TODO no need?
-                    job.CreateDate = DateTime.Now; 
-                    job.DueDate = DateTime.Now; 
+                    TaskMessage = model.TaskMessage,
+                    TaskName = model.TaskName,
+                    CompleteDate = DateTime.Now,
+                    CreateDate = DateTime.Now,
+                    DueDate = DateTime.Now
                 };
-                _db.Tasks.Add(job);
-                await _db.SaveChangesAsync();
-                return  RedirectToAction("Index");
-            }
+
+                //TODO no need?
+             _db.Tasks.Add(job);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
             return CreateTask();
-        }
-
-        public IActionResult ListCompletedTasks()
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
+
+    public IActionResult ListCompletedTasks()
+    {
+        throw new NotImplementedException();
+    }
+
+
+}
 }
