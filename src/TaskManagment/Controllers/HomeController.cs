@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerDbDAL;
 using TaskManagment.Model;
@@ -26,8 +25,8 @@ namespace TaskManagment.Controllers
 
         public async Task<IActionResult> ListActiveTasks()
         {
-            var tasks = await _db.Tasks.ToListAsync();
-            ViewData.Model = tasks.OrderByDescending(t => t.Id);
+            var tasks = await _db.Tasks.OrderByDescending(t => t.Id).ToListAsync();
+            ViewData.Model = tasks;
             return View();
         }
 
@@ -37,7 +36,7 @@ namespace TaskManagment.Controllers
             return View();
         }
         [HttpPost]
-
+      
         public async Task<IActionResult> CreateTask(TaskModel model)
         {
 
@@ -47,24 +46,28 @@ namespace TaskManagment.Controllers
                 {
                     TaskMessage = model.TaskMessage,
                     TaskName = model.TaskName,
-                    CompleteDate = DateTime.Now,
+                    CompleteDate = DateTime.Now, 
                     CreateDate = DateTime.Now,
                     DueDate = DateTime.Now
                 };
-
-                //TODO no need?
-             _db.Tasks.Add(job);
-            await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+                _db.Tasks.Add(job);
+                await _db.SaveChangesAsync();
+                return  RedirectToAction("Index");
+            }
             return CreateTask();
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var task = await _db.Tasks.FindAsync(Int32.Parse(id));
+            ViewData.Model = task;
+            return View();
+        }
+        public IActionResult ListCompletedTasks()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
-
-    public IActionResult ListCompletedTasks()
-    {
-        throw new NotImplementedException();
-    }
-
-
-}
 }

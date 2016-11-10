@@ -1,12 +1,25 @@
 ﻿@model IEnumerable<TaskManagerDbDAL.TaskHandler>
 
-<h3>All active tasks</h3>
-<ul>
+<h3>Active tasks</h3>
+<table class="table table-striped">
+
     @foreach (var task in Model)
     {
-        <li>
-            @Html.ActionLink(task.TaskName, "Details", "Home", new { id = task.Id }, null)
-        </li>
+
+        <tr>
+            <td>
+                @Html.ActionLink(task.TaskName, "Details", "Home", new { id = task.Id }, null)
+            </td>
+            <td>
+                @Html.ActionLink("check", "done", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-ok" })
+            </td>
+            <td>
+                @Html.ActionLink("delete", "Delete", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-remove" })
+            </td>
+        </tr>
+
+         
     }
 
-</ul>
+
+</table>

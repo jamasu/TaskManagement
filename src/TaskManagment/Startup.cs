@@ -42,8 +42,11 @@ namespace TaskManagment
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-          
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes => {
+                routes.MapRoute("CreateNewTask", "{controller=Home}/{action=CreateNewTask}");
+                routes.MapRoute("Default route", "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
