@@ -16,7 +16,7 @@ namespace TaskManagerDbDAL
         public DateTime CreateDate { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime CompleteDate { get; set; }
-
+        public bool Checked { get; set; }
 
     }
 }

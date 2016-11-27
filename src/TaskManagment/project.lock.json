@@ -1130,6 +1130,18 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ng2Webpack/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "lib/net451/Ng2Webpack.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Ng2Webpack.dll": {}
+        }
+      },
       "System.Buffers/4.0.0": {
         "type": "package",
         "compile": {
@@ -1466,6 +1478,19 @@
         },
         "runtime": {
           "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll": {}
+        }
+      },
+      "Webpack/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/net451/Webpack.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Webpack.dll": {}
         }
       },
       "TaskManagerDbDAL/1.0.0": {
@@ -2499,6 +2524,17 @@
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "tools/install.ps1"
+      ]
+    },
+    "Ng2Webpack/1.0.2": {
+      "sha512": "DHLKbtbIxXaKNh1ijFnxSLWwh6od8eqGURfZtYwhg8lnpSguUKnuk8xaemsicDw3t6BhcKycPU9sr7yfMrQOrA==",
+      "type": "package",
+      "path": "Ng2Webpack/1.0.2",
+      "files": [
+        "Ng2Webpack.1.0.2.nupkg.sha512",
+        "Ng2Webpack.nuspec",
+        "lib/net451/Ng2Webpack.dll",
+        "lib/netstandard1.6/Ng2Webpack.dll"
       ]
     },
     "System.Buffers/4.0.0": {
@@ -4138,6 +4174,17 @@
         "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml"
       ]
     },
+    "Webpack/3.0.0": {
+      "sha512": "S3F4uhulTZhaHAsnb92A1/vVunTdr47CQ0bt9g079IS4M8MDIun8vnwhTuZ9pe8DJw2GdgQyYe5yOUfkPEPerg==",
+      "type": "package",
+      "path": "Webpack/3.0.0",
+      "files": [
+        "Webpack.3.0.0.nupkg.sha512",
+        "Webpack.nuspec",
+        "lib/net451/Webpack.dll",
+        "lib/netstandard1.3/Webpack.dll"
+      ]
+    },
     "TaskManagerDbDAL/1.0.0": {
       "type": "project",
       "msbuildProject": "../../TaskManagerDbDAL/TaskManagerDbDAL.csproj"
@@ -4155,7 +4202,9 @@
       "Microsoft.Extensions.Configuration.Json >= 1.0.0",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 1.0.0",
       "Microsoft.Extensions.Logging.Console >= 1.0.0",
-      "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0-rc2-final"
+      "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0-rc2-final",
+      "Ng2Webpack >= 1.0.2",
+      "Webpack >= 3.0.0"
     ],
     ".NETFramework,Version=v4.5.2": [
       "TaskManagerDbDAL"

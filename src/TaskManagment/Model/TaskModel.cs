@@ -24,5 +24,7 @@ namespace TaskManagment.Model
         public DateTime DueDate { get; set; }
         [Required]
         public DateTime CompleteDate { get; set; }
+        public bool Checked { get; set; }
+
     }
 }

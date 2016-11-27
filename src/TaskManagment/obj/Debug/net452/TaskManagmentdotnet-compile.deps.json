@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETFramework,Version=v4.5.2/",
-    "signature": "881e227f552d549e3089235e85d13e8608c054cc"
+    "signature": "ec3899671da07ac8f6d3d68227b7ef9b6aa7dec8"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,9 @@
           "Microsoft.Extensions.Configuration.Json": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
           "Microsoft.Extensions.Logging.Console": "1.0.0",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
+          "Ng2Webpack": "1.0.2",
+          "Webpack": "3.0.0"
         },
         "compile": {
           "TaskManagment.exe": {}
@@ -815,6 +817,14 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ng2Webpack/1.0.2": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0"
+        },
+        "compile": {
+          "lib/net451/Ng2Webpack.dll": {}
+        }
+      },
       "System.Buffers/4.0.0": {
         "compile": {
           "lib/netstandard1.1/System.Buffers.dll": {}
@@ -977,6 +987,15 @@
           "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll": {}
         }
       },
+      "Webpack/3.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/net451/Webpack.dll": {}
+        }
+      },
       "TaskManagerDbDAL/1.0.0": {
         "compile": {
           "bin/Debug/TaskManagerDbDAL.dll": {}
@@ -1042,7 +1061,9 @@
           "Microsoft.Extensions.Configuration.Json": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
           "Microsoft.Extensions.Logging.Console": "1.0.0",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
+          "Ng2Webpack": "1.0.2",
+          "Webpack": "3.0.0"
         },
         "runtime": {
           "TaskManagment.exe": {}
@@ -1825,6 +1846,14 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Ng2Webpack/1.0.2": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0"
+        },
+        "runtime": {
+          "lib/net451/Ng2Webpack.dll": {}
+        }
+      },
       "System.Buffers/4.0.0": {
         "runtime": {
           "lib/netstandard1.1/System.Buffers.dll": {}
@@ -1905,6 +1934,15 @@
       "System.Threading.Tasks.Extensions/4.0.0": {
         "runtime": {
           "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll": {}
+        }
+      },
+      "Webpack/3.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "runtime": {
+          "lib/net451/Webpack.dll": {}
         }
       },
       "TaskManagerDbDAL/1.0.0": {
@@ -2320,6 +2358,11 @@
       "serviceable": true,
       "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw=="
     },
+    "Ng2Webpack/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DHLKbtbIxXaKNh1ijFnxSLWwh6od8eqGURfZtYwhg8lnpSguUKnuk8xaemsicDw3t6BhcKycPU9sr7yfMrQOrA=="
+    },
     "System.Buffers/4.0.0": {
       "type": "package",
       "serviceable": true,
@@ -2469,6 +2512,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-pH4FZDsZQ/WmgJtN4LWYmRdJAEeVkyriSwrv2Teoe5FOU0Yxlb6II6GL8dBPOfRmutHGATduj3ooMt7dJ2+i+w=="
+    },
+    "Webpack/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-S3F4uhulTZhaHAsnb92A1/vVunTdr47CQ0bt9g079IS4M8MDIun8vnwhTuZ9pe8DJw2GdgQyYe5yOUfkPEPerg=="
     },
     "TaskManagerDbDAL/1.0.0": {
       "type": "msbuildproject",
