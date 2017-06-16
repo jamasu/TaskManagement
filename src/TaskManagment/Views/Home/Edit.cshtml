@@ -1,0 +1,46 @@
+﻿@using TaskManagment.Model
+@model TaskModel
+
+<h3>Edit task</h3>
+<a asp-action="ListActiveTasks">Back</a>
+
+<form asp-action="Update" method="post">
+    <table class="table-responsive">
+        <tr>
+            <td>
+                <label asp-for="TaskName"></label>
+            </td>
+            <br />
+            <td>
+                <input asp-for="@Model.TaskName"></input>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="TaskMessage"></label>
+            </td>
+            <td>
+                <textarea asp-for="@Model.TaskMessage" rows="5" cols="22"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label asp-for="DueDate"></label>
+
+            </td>
+            <td>
+                <input asp-for="@Model.DueDate"></>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-edit"><button>Update</button></span>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+

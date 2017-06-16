@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TaskManagement.Repository;
 using TaskManagerDbDAL;
 using TaskManagment.Model;
+using TaskManagment.Repository;
 
 namespace TaskManagment
 {
@@ -26,8 +28,8 @@ namespace TaskManagment
         {
             services.AddOptions();
             services.Configure<TaskSettings>(_configuration.GetSection("TaskDB"));
-
             services.AddTransient<TaskManagerDbContext>();
+            services.AddTransient<TaskRepository<TaskHandler>>();
             services.AddMvc();
 
         }

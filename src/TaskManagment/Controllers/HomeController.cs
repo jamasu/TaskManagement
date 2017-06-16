@@ -1,53 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerDbDAL;
 using TaskManagment.Model;
+using TaskManagment.Repository;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TaskManagment.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly TaskManagerDbContext _db;
-
-        public HomeController(TaskManagerDbContext db)
+    {     
+        private readonly TaskRepository<TaskHandler> repo;
+        public HomeController(TaskRepository<TaskHandler> taskrepo)
         {
-            _db = db;
+            repo = taskrepo;
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        public async Task<IActionResult> ListActiveTasks()
+        
+        public IActionResult ListActiveTasks()
         {
-            var tasks = await _db.Tasks.Where(t=> !t.Checked).OrderByDescending(t => t.Id).ToListAsync();
+            var resultSet = repo.GetAll();
+            var tasks =  repo.Find(t=> !t.Checked).OrderByDescending(t => t.Id).ToList();
 
             ViewData.Model = tasks;
+            
             return View();
         }
-
-        public async Task<IActionResult> Delete(string id)
+        
+        public IActionResult Delete(string id)
         {
-             var task = await _db.Tasks.FindAsync(Int32.Parse(id));
-             _db.Tasks.Remove( task);
-            await _db.SaveChangesAsync();
+             var task = repo.Get(Int32.Parse(id));
+             repo.Remove(task);
             ViewData.Model = task;
             return View("Deleted");
         }
-
+        
         public IActionResult CreateTask()
         {
 
             return View();
         }
         [HttpPost]
-      
+
         public async Task<IActionResult> CreateTask(TaskModel model)
         {
 
@@ -57,39 +56,75 @@ namespace TaskManagment.Controllers
                 {
                     TaskMessage = model.TaskMessage,
                     TaskName = model.TaskName,
-                    CompleteDate = DateTime.Now.AddDays(10), 
+                    CompleteDate = DateTime.Now.AddDays(10),
                     CreateDate = DateTime.Now,
                     DueDate = DateTime.Now,
                     Checked = false
                 };
-                _db.Tasks.Add(job);
-                await _db.SaveChangesAsync();
-                return  RedirectToAction("Index");
+
+                await repo.Add(job);
+                return RedirectToAction("Index");
             }
             return CreateTask();
         }
 
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
-            var task = await _db.Tasks.FindAsync(Int32.Parse(id));
+            var task =  repo.Get(Int32.Parse(id));
             ViewData.Model = task;
             return View();
         }
         public IActionResult ListCompletedTasks()
         {
-            var tasks = _db.Tasks.Where(t => t.Checked);
+            var tasks = repo.Find(t => t.Checked);
 
             ViewData.Model = tasks;
             return View("ListCompletedTasks");
         }
-
-        public async Task<IActionResult> Done(string id)
+        public IActionResult Edit(string id)
         {
-            var task = await _db.Tasks.FindAsync(Int32.Parse(id));
+            var task = repo.Get(Int32.Parse(id));
+            var model = new TaskModel
+            {
+                Id = task.Id,
+                TaskName = task.TaskName,
+                TaskMessage = task.TaskMessage,
+                CompleteDate = DateTime.Now.AddDays(10),
+                CreateDate = DateTime.Now,
+                DueDate = DateTime.Now,
+                Checked = false
+            };
+            ViewData.Model = model;
+          
+            return View("Edit");
+        }
+
+        [HttpPost]
+        public IActionResult Update(TaskModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var task = repo.Get(model.Id);
+                task.TaskMessage = model.TaskMessage;
+                task.TaskName = model.TaskName;
+                task.CompleteDate = model.CompleteDate;
+                task.CreateDate = model.CreateDate;
+                task.DueDate = model.DueDate;
+                task.Checked = model.Checked;
+                repo.Update(task);
+                return View("ListCompletedTasks");
+            }
+            return View("Index"); //something went wrong
+        }
+        
+        public  IActionResult Done(string id)
+        {
+            var task =  repo.Get(Int32.Parse(id));
             task.Checked = true;
-            _db.Tasks.AddOrUpdate(task);
-            await _db.SaveChangesAsync();
+            repo.Update(task);
+        
             return RedirectToAction("ListCompletedTasks");
         }
+        
     }
 }

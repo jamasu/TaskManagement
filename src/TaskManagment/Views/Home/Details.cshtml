@@ -5,6 +5,8 @@
     Id: @Model.Id <br/>
     Content: <span>@Model.TaskMessage</span><br/>
     Created: @Model.CreateDate <br/>
-    Deadline: @Model.DueDate
+    Deadline: @Model.DueDate<br/>
+    <a asp-action="ListActiveTasks">Back</a>
+    @Html.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, null)<br />
 
 </div>

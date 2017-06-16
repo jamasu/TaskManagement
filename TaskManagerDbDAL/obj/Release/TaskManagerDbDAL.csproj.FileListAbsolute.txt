@@ -23,3 +23,4 @@ C:\Users\pa_suja\Documents\Programming\TaskManagement\TaskManagerDbDAL\bin\Relea
 C:\Users\pa_suja\Documents\Programming\TaskManagement\TaskManagerDbDAL\bin\Release\Microsoft.Extensions.Primitives.xml
 C:\Users\pa_suja\Documents\Programming\TaskManagement\TaskManagerDbDAL\obj\Release\TaskManagerDbDAL.dll
 C:\Users\pa_suja\Documents\Programming\TaskManagement\TaskManagerDbDAL\obj\Release\TaskManagerDbDAL.pdb
+C:\Users\pa_suja\Documents\Programming\TaskManagement\TaskManagerDbDAL\obj\Release\TaskManagerDbDAL.csprojResolveAssemblyReference.cache

@@ -9,7 +9,7 @@ namespace TaskManagerDbDAL
 {
     public class TaskManagerDbContext : DbContext
     {
-
+        public object task;
 
         public TaskManagerDbContext(string connectionString)
             : base(connectionString)
@@ -23,6 +23,6 @@ namespace TaskManagerDbDAL
 
         public DbSet<TaskHandler> Tasks { get; set; }
 
-    
+       
     }
 }

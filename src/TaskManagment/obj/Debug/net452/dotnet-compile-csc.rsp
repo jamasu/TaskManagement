@@ -131,3 +131,6 @@
 "C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Startup.cs"
 "C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Controllers\HomeController.cs"
 "C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Model\TaskModel.cs"
+"C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Repository\IRepository.cs"
+"C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Repository\ITaskRepository.cs"
+"C:\Users\pa_suja\Documents\Programming\TaskManagement\src\TaskManagment\Repository\TaskRepository.cs"

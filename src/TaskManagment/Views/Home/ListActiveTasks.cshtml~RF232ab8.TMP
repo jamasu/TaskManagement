@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TaskManagerDbDAL.TaskHandler>
+
+
+
+@if (Model.Any())
+{
+    <h3>Active tasks</h3>
+    <table class="table table-striped">
+
+        <thead>
+        <th>
+            Task
+        </th>
+        <th>
+            Completed
+        </th>
+        <th>
+            Remove
+        </th>
+        </thead>
+        @foreach (var task in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.ActionLink(task.TaskName, "Details", "Home", new { id = task.Id }, null)<br />
+
+                </td>
+                <td>
+                    @Html.ActionLink("Done", "done", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-ok" })
+                </td>
+                <td>
+                    @Html.ActionLink("delete", "Delete", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-remove" })
+                </td>
+            </tr>
+
+        }
+
+
+
+
+    </table>
+
+}
+else
+{
+    <h3>Active tasks... none</h3>
+    @Html.ActionLink("Create new", "CreateTask", "Home", new { @class = "glyphicon glyphicon-plus" })
+}

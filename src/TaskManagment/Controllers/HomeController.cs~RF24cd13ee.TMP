@@ -1,0 +1,111 @@
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using TaskManagerDbDAL;
+using TaskManagment.Model;
+using TaskManagment.Repository;
+using System.Linq;
+
+namespace TaskManagment.Controllers
+{
+    public class HomeController : Controller
+    {     
+        private readonly TaskRepository<TaskHandler> repo;
+        public HomeController(TaskRepository<TaskHandler> taskrepo)
+        {
+            repo = taskrepo;
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        
+        public IActionResult ListActiveTasks()
+        {
+            var resultSet = repo.GetAll();
+            var tasks =  repo.Find(t=> !t.Checked).OrderByDescending(t => t.Id).ToList();
+
+            ViewData.Model = tasks;
+            
+            return View();
+        }
+        
+        public async Task<IActionResult> Delete(string id)
+        {
+             var task = repo.Get(Int32.Parse(id));
+            repo.Remove(task);
+            ViewData.Model = task;
+            return View("Deleted");
+        }
+        
+        public IActionResult CreateTask()
+        {
+
+            return View();
+        }
+        [HttpPost]
+      
+        public IActionResult CreateTask(TaskModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var job = new TaskHandler
+                {
+                    TaskMessage = model.TaskMessage,
+                    TaskName = model.TaskName,
+                    CompleteDate = DateTime.Now.AddDays(10), 
+                    CreateDate = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    Checked = false
+                };
+              
+                 repo.Add(job);
+                return  RedirectToAction("Index");
+            }
+            return  CreateTask();
+        }
+        
+        public IActionResult Details(string id)
+        {
+            var task =  repo.Get(Int32.Parse(id));
+            ViewData.Model = task;
+            return View();
+        }
+        public IActionResult ListCompletedTasks()
+        {
+            var tasks = repo.Find(t => t.Checked);
+
+            ViewData.Model = tasks;
+            return View("ListCompletedTasks");
+        }
+        public IActionResult Edit(string id)
+        {
+            var task = repo.Get(Int32.Parse(id));
+            var model = new TaskModel
+            {
+                model.TaskName = task.TaskName,
+                model.TaskMessage = task.TaskMessage,
+                model.TaskName,
+                modelCompleteDate = DateTime.Now.AddDays(10),
+                model.CreateDate = DateTime.Now,
+                model.DueDate = DateTime.Now,
+                model.Checked = false
+            };
+            ViewData.Model = task as TaskModel;
+            return View("Edit");
+        }
+        
+        public  IActionResult Done(string id)
+        {
+            var task =  repo.Get(Int32.Parse(id));
+            task.Checked = true;
+            repo.Update(task);
+        
+            return RedirectToAction("ListCompletedTasks");
+        }
+        
+    }
+}

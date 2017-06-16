@@ -12,6 +12,7 @@ namespace TaskManagment.Model
         [Required]
         [Display(Name = "Task name")]
         public string TaskName { get; set; }
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Task message")]
         public string TaskMessage { get; set; }
