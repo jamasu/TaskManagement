@@ -6,7 +6,6 @@ using TaskManagment.Model;
 using TaskManagment.Repository;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace TaskManagment.Controllers
 {
@@ -22,14 +21,10 @@ namespace TaskManagment.Controllers
             return View();
         }
 
-        public List<TaskHandler> ListOfActiveTasks()
-        {
-            var tasks = repo.Find(t => !t.Checked).OrderByDescending(t => t.Id).ToList();
-
-            return tasks;
-        }
+        
         public IActionResult ListActiveTasks()
         {
+            var resultSet = repo.GetAll();
             var tasks =  repo.Find(t=> !t.Checked).OrderByDescending(t => t.Id).ToList();
 
             ViewData.Model = tasks;
@@ -117,8 +112,6 @@ namespace TaskManagment.Controllers
                 task.DueDate = model.DueDate;
                 task.Checked = model.Checked;
                 repo.Update(task);
-
-                ViewData.Model = ListOfActiveTasks();
                 return View("ListActiveTasks");
             }
             return View("Index"); //something went wrong

@@ -32,9 +32,9 @@ namespace TaskManagment.Repository
             return  _context.Set<T>().Find(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public  IEnumerable<T> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return  _context.Set<T>().ToList();
         }
 
         public void Remove(T entity)
@@ -48,6 +48,7 @@ namespace TaskManagment.Repository
             _context.Set<T>().Attach(entity);
             var entry = _context.Entry(entity);
             entry.State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 

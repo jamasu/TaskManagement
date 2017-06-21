@@ -9,7 +9,7 @@ namespace TaskManagment.Repository
     public interface IRepository<T> where T : class
     {
         T Get(int id);
-        Task<IEnumerable<T>> GetAll();
+        IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         Task Add(T entity);
         void Remove(T entity);

@@ -7,7 +7,17 @@
 <form asp-action="Update" method="post">
     <table class="table-responsive">
         <tr>
-            <td>
+            <td>                        
+                @Html.HiddenFor(model => model.Id)
+            
+                @Html.HiddenFor(model => model.CompleteDate)
+             
+                @Html.HiddenFor(model => model.CreateDate)
+            
+                @Html.HiddenFor(model => model.DueDate)
+              
+                @Html.HiddenFor(model => model.Checked)
+
                 <label asp-for="TaskName"></label>
             </td>
             <br />
@@ -36,7 +46,7 @@
         </tr>
         <tr>
             <td>
-               <button>Update</button>
+                <button>Update</button>
             </td>
         </tr>
     </table>

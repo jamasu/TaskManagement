@@ -32,6 +32,9 @@
 
                 </td>
                 <td>
+                    @Html.ActionLink("Edit", "Edit", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-icon-edit" })
+                </td>
+                <td>
                     @Html.ActionLink("Done", "done", "Home", new { id = task.Id }, new { @class = "glyphicon glyphicon-ok" })
                 </td>
                 <td>
